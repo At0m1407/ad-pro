@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "firebase": "^8.10.0",
     "vue": "^2.6.11",
     "vue-router": "^3.5.3",
     "vuetify": "^2.4.0",
@@ -45,5 +46,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahsas13/ad-pro.git"
+  },
+  "author": "ahsas008@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahsas13/ad-pro/issues"
+  },
+  "homepage": "https://github.com/ahsas13/ad-pro#readme"
 }
