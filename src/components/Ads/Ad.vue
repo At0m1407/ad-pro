@@ -23,9 +23,12 @@
 </template>
 <script>
 export default {
-	data () { 
-		return {
-		} 	
+	props: ['id'],
+	computed: {
+		ad() {
+		const id = this.id
+		return this.$store.getters.adById(id)
+		}
 	}
 } 
 </script>
