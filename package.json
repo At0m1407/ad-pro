@@ -51,12 +51,12 @@
   "main": "babel.config.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahsas13/ad-pro.git"
+    "url": "git+https://github.com/At0m1407/ad-pro.git"
   },
-  "author": "ahsas008@gmail.com",
+  "author": "ltvbyfynjy1@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ahsas13/ad-pro/issues"
+    "url": "https://github.com/At0m1407/ad-pro/issues"
   },
-  "homepage": "https://github.com/ahsas13/ad-pro#readme"
+  "homepage": "https://github.com/At0m1407/ad-pro#readme"
 }
