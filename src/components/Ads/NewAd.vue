@@ -67,6 +67,11 @@ export default {
 			promo: false
 		} 	
 	},
+	computed: {
+		loading() {
+			return this.$store.getters.loading
+		}
+	},
 	methods: {
 		createAd(){
 			if (this.$refs.form.validate()){
@@ -76,7 +81,11 @@ export default {
 				promo: this.promo,
 				src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
 			}
-			this.$store.dispatch("createAd", ad)
+			this.$store.dispatch("createAds", ad)
+			.then(() => {
+				this.$router.push("/list")
+			})
+			.catch(() => {})
 			}
 		}
 	}

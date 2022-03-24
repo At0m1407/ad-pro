@@ -71,7 +71,8 @@ export default {
                 payload.promo,
                 payload.id
             )
-              const fbValue = await fb.database().ref('ads').push(newAd)
+              const fbValue = await 
+              fb.database().ref('ads').push(newAd)
               commit('setLoading', false)
               commit('createAd', {
                 ...newAd,
@@ -87,11 +88,9 @@ export default {
             commit('clearError')
             commit('setLoading', true)
             try {
-                //Здесь запрос к базе данных
                 const fbVal = await fb.database().ref('ads').once('value')
                 const ads = fbVal.val()
                 console.log(ads)
-                //val()
                 const resultAds = []
                 Object.keys(ads).forEach(key => {
                     const ad = ads[key]
