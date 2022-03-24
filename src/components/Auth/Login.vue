@@ -95,12 +95,14 @@ export default {
 				})
 				.catch((err) => {
 					console.log(err.message)
-				})
-			}
+			})
+			}}
 		},
-		closeError () {
-			this.$store.dispatch('clearError')
-		}
+	created () {
+		if (this.$route.query['loginError']) {
+		this.$store.dispatch('setError','Please login to access this page')
 	}
+	
+}
 } 
 </script>

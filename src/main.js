@@ -5,8 +5,8 @@ import vuetify from './plugins/vuetify'
 import router from './router/index'
 import store from './store'
 import fb from 'firebase'
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
 
 Vue.use(Router)
 Vue.config.productionTip = false
@@ -29,7 +29,14 @@ const firebaseConfig = {
  // Initialize Firebase
   fb.initializeApp(firebaseConfig);
   fb.analytics();
-  const app = initializeApp(firebaseConfig);
-  getAnalytics(app);
+  //const app = initializeApp(firebaseConfig);
+  //getAnalytics(app);
+  fb.auth().onAuthStateChanged(user => {
+    if (user) {
+      console.log(`Смотрим что мы получили: ${user.uid}`)
+      this.$store.dispatch('autoLoginUser', user.uid)
+    }
+ })
+  this.$store.dispatch('fetchAds')
 }
 }).$mount('#app')
