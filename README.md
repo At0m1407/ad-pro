@@ -1,24 +1,6 @@
-# my-app
+# Крымский инженерно-педагогический университет имени Февзи Якубова
+## Кафедра прикладной информатики 
+### Проект на Vue
+#### Студент группы И-1-20 
+Демин Антон
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
