@@ -50,8 +50,14 @@ export default {
         },
         loadAds (state, payload) {
             state.ads = payload
-        }
-        
+        },
+        updateAd (state, {title, desc, id}) {
+          const ad = state.ads.find(a => {
+            return a.id === id
+          })
+          ad.title = title
+          ad.desc = desc
+        }    
     },
     actions: {
         createAd({commit},payload){
@@ -62,7 +68,7 @@ export default {
             commit('clearError')
             commit('setLoading', true)
             const image = payload.image
-
+      
             try {
               const newAd = new Ad(
                 payload.title,
@@ -72,11 +78,11 @@ export default {
                 payload.promo,
                 payload.id
             )
-            const fbValue = await fb.database().ref('ads').push(newAd)
-            const imageExt = image.name.slice(image.name.lastIndexOf("."))
+              const fbValue = await fb.database().ref('ads').push(newAd)
+              const imageExt = image.name.slice(image.name.lastIndexOf("."))
               
-            console.log ("bbbb")
-            console.log (fbValue.key)
+              console.log ("bbbb")
+              console.log (fbValue.key)
 
               await fb.storage().ref().child(`ads/${fbValue.key}.${imageExt}`).put(image).then(snapshot => {
                 snapshot.ref.getDownloadURL().then((downloadURL) => {
@@ -101,9 +107,11 @@ export default {
             commit('clearError')
             commit('setLoading', true)
             try {
+                //Здесь запрос к базе данных
                 const fbVal = await fb.database().ref('ads').once('value')
                 const ads = fbVal.val()
                 console.log(ads)
+                //val()
                 const resultAds = []
                 Object.keys(ads).forEach(key => {
                     const ad = ads[key]
@@ -118,13 +126,25 @@ export default {
                       )
                     )
                   })
-                commit('loadAds', resultAds)
+                  commit('loadAds', resultAds)
                 commit('setLoading', false)
-                
             }  catch (error) {
                 commit('setError', error.message)
                 commit('setLoading', false)
                 throw error
+            }
+        },
+            async updateAd ({commit},{title,desc,id}) {
+            commit('clearError')
+            commit('setLoading', true)
+            try {
+              await fb.database().ref("ads").child(id).update({ title, desc })
+              commit('updateAd',{ title, desc, id})
+              commit('setLoading', false)
+            } catch (error) {
+              commit('setError', error.message)
+              commit('setLoading', false)
+              throw error
             }
         }
     },   
@@ -140,10 +160,10 @@ export default {
         myAds(state) {
             return state.ads
         },
-        adById(state) {
-            return id => {
-            return state.ads.find(ad => ad.id == id)
-            }
-        }        
-}
+    adById(state) {
+       return id => {
+       return state.ads.find(ad => ad.id == id)
+       }
+    },
+  }
 }
